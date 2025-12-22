@@ -1,4 +1,5 @@
-import random 
+import random
+import sys
 
 
 hp = 100
@@ -8,6 +9,13 @@ enemies = ["Bed", "Toaster", "Sofa", "Lamp"]
 
 print("--- WELCOME ---")
 
+name = input("Enter your name to play: ").strip()
+
+if name.lower() in ["poo", "poop", "poopy"]:
+    print("That is very immature!")
+    sys.exit()
+
+print(f"Thank you {name} for playing, I hope you enjoy this game!")
 
 while hp > 0:
     current_enemy = random.choice(enemies)
@@ -16,7 +24,7 @@ while hp > 0:
 
     
     while enemy_hp > 0 and hp > 0:
-        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ]")
+        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU\{name}: {hp} HP | Healers: {healers} ]")
         choice = input(f"Actions: [1] Attack [2] Heal: ")
 
         
@@ -24,9 +32,9 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(10, 15)
 
-            if random.random() < 0.2: 
-                dmg = dmg * 2
-                print("CRITICAL HIT! DOUBLE DAMAGE!")
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   print("CRITICAL HIT! DOUBLE DAMAGE!")
 
                 enemy_hp -= dmg
                 hp -= 5 
@@ -43,9 +51,9 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(12, 18)
 
-            if random.random() < 0.2: 
-                dmg = dmg * 2
-                print("CRITICAL HIT! DOUBLE DAMAGE!")
+                if random.random() < 0.2: 
+                    dmg = dmg * 2
+                    print("CRITICAL HIT! DOUBLE DAMAGE!")
 
 
                 enemy_hp -= dmg
@@ -62,9 +70,9 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(8, 12)
 
-            if random.random() < 0.2:
-                dmg = dmg * 2
-                print("CRITICAL HIT! DOUBLE DAMAGE!")
+                if random.random() < 0.2:
+                    dmg = dmg * 2
+                    print("CRITICAL HIT! DOUBLE DAMAGE!")
 
                 enemy_hp -= dmg
                 hp += 2 
@@ -81,9 +89,9 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(15, 25)
 
-            if random.random() < 0.2:
-                dmg = dmg * 2
-                print("CRITICAL HIT! DOUBLE DAMAGE!")
+                if random.random() < 0.2:
+                    dmg = dmg * 2
+                    print("CRITICAL HIT! DOUBLE DAMAGE!")
 
                 enemy_hp -= dmg
                 print(f"You smash the bulb! {dmg} damage.")
@@ -109,7 +117,14 @@ while hp > 0:
         
         if random.random() < 0.3:
             healers += 1
-            print("You found a spare Healer in the wreckage!")
+            messages = [
+            "You squint your eyes as you see something unusual... It's a healer in the wreckage!",
+            "You feel like you spotted something off. Then you realise its a healer!",
+            "You search the wreckage for any valuable things, you find a healer!",
+            "You see a glimmer of something... Oh... It's a healer!",
+            "What's that? Interesting, wait a second... It's a healer!"
+            ]
+            print(random.choice(messages))
     else:
         print(f"\n--- GAME OVER ---")
         print(f"Final Score: {score} enemies defeated.")
