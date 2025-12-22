@@ -24,7 +24,7 @@ while hp > 0:
 
     
     while enemy_hp > 0 and hp > 0:
-        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU\{name}: {hp} HP | Healers: {healers} ]")
+        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ]")
         choice = input(f"Actions: [1] Attack [2] Heal: ")
 
         
