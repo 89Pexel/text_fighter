@@ -1,0 +1,117 @@
+import random 
+
+# Setup
+enemies = ["Bed", "Toaster", "Sofa", "Lamp"]
+current_enemy = random.choice(enemies)
+
+healers = 3
+hp = 100
+enemy_hp = random.randint(50, 75) 
+
+print("--- WELCOME ---")
+print(f"A wild {current_enemy} appears!")
+
+
+if current_enemy == "Toaster":
+    while enemy_hp > 0 and hp > 0:
+        print(f"\nYour HP: {hp} | {current_enemy} HP: {enemy_hp}")
+        choice = input(f"Do you [1] Punch the toaster? [2] Or heal ({healers} left): ")
+
+        if choice == "1":
+            damage = random.randint(10, 15)
+            enemy_hp -= damage
+            hp -= 5
+            print(f"You hit the {current_enemy} for {damage} damage! Your fist hurts (-5 HP).")
+        
+        elif choice == "2":
+            if healers <= 0:
+                print("No healers left!")
+            else:
+                heal = random.randint(20, 35)
+                hp += heal
+                healers -= 1
+                print(f"Healing... You now have {hp} HP.")
+
+        if enemy_hp > 0:
+            e_damage = random.randint(5, 20)
+            hp -= e_damage
+            print(f"The Toaster shoots hot toast! You take {e_damage} damage.")
+
+elif current_enemy == "Bed":
+    while enemy_hp > 0 and hp > 0:
+        print(f"\nYour HP: {hp} | {current_enemy} HP: {enemy_hp}")
+        choice = input(f"Do you [1] Unscrew the bed? [2] Or heal ({healers} left): ")
+
+        if choice == "1":
+            damage = random.randint(10, 15)
+            enemy_hp -= damage
+            print(f"You unscrew a leg! {damage} damage.")
+        
+        elif choice == "2":
+            if healers <= 0:
+                print("No healers left!")
+            else:
+                hp += random.randint(20, 35)
+                healers -= 1
+                print(f"Safe for a second! HP is now {hp}.")
+
+        if enemy_hp > 0:
+            e_damage = random.randint(5, 15)
+            hp -= e_damage
+            print(f"The Bed slams your shins for {e_damage} damage!")
+
+
+elif current_enemy == "Sofa":
+    while enemy_hp > 0 and hp > 0:
+        print(f"\nYour HP: {hp} | {current_enemy} HP: {enemy_hp}")
+        choice = input(f"Do you [1] Punch the sofa? [2] Or heal ({healers} left): ")
+
+        if choice == "1":
+            damage = random.randint(10, 15)
+            enemy_hp -= damage
+            hp += 1 
+            print(f"You punch the cushions! {damage} damage and you feel cozy (+1 HP).")
+        
+        elif choice == "2":
+            if healers <= 0:
+                print("No healers left!")
+            else:
+                hp += random.randint(20, 35)
+                healers -= 1
+                print(f"Recovered HP: {hp}")
+
+        if enemy_hp > 0:
+            e_damage = random.randint(1, 10)
+            hp -= e_damage
+            print(f"The Sofa annoys you! {e_damage} damage.")
+
+
+elif current_enemy == "Lamp":
+    while enemy_hp > 0 and hp > 0:
+        print(f"\nYour HP: {hp} | {current_enemy} HP: {enemy_hp}")
+        choice = input(f"Do you [1] Throw something? [2] Or heal ({healers} left): ")
+
+        if choice == "1":
+            damage = random.randint(10, 15)
+            enemy_hp -= damage
+            hp -= 3
+            print(f"You hit the Lamp for {damage} damage! You cut your hand (-3 HP).")
+        
+        elif choice == "2":
+            if healers <= 0:
+                print("No healers left!")
+            else:
+                hp += random.randint(20, 35)
+                healers -= 1
+                print(f"HP is now {hp}")
+
+        if enemy_hp > 0:
+            e_damage = random.randint(5, 25)
+            hp -= e_damage
+            print(f"The Lamp blinds you! {e_damage} damage.")
+
+
+if hp <= 0:
+    print("\n--- RIP: You were defeated by furniture. ---")
+else:
+    print(f"\n--- VICTORY: The {current_enemy} has been destroyed! ---")
