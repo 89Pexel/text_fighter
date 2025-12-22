@@ -23,6 +23,11 @@ while hp > 0:
         if current_enemy == "Toaster":
             if choice == "1":
                 dmg = random.randint(10, 15)
+
+            if random.random() < 0.2: 
+                dmg = dmg * 2
+                print("CRITICAL HIT! DOUBLE DAMAGE!")
+
                 enemy_hp -= dmg
                 hp -= 5 
                 print(f"You punch the metal! {dmg} dmg to it, 5 dmg to you.")
@@ -37,6 +42,12 @@ while hp > 0:
         elif current_enemy == "Bed":
             if choice == "1":
                 dmg = random.randint(12, 18)
+
+            if random.random() < 0.2: 
+                dmg = dmg * 2
+                print("CRITICAL HIT! DOUBLE DAMAGE!")
+
+
                 enemy_hp -= dmg
                 print(f"You unscrew the Bed! {dmg} damage.")
             elif choice == "2":
@@ -50,6 +61,11 @@ while hp > 0:
         elif current_enemy == "Sofa":
             if choice == "1":
                 dmg = random.randint(8, 12)
+
+            if random.random() < 0.2:
+                dmg = dmg * 2
+                print("CRITICAL HIT! DOUBLE DAMAGE!")
+
                 enemy_hp -= dmg
                 hp += 2 
                 print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP.")
@@ -64,6 +80,11 @@ while hp > 0:
         elif current_enemy == "Lamp":
             if choice == "1":
                 dmg = random.randint(15, 25)
+
+            if random.random() < 0.2:
+                dmg = dmg * 2
+                print("CRITICAL HIT! DOUBLE DAMAGE!")
+
                 enemy_hp -= dmg
                 print(f"You smash the bulb! {dmg} damage.")
             elif choice == "2":
