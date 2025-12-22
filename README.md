@@ -1,4 +1,5 @@
 # text_fighter
 
-<img width="351" height="429" alt="image" src="https://github.com/user-attachments/assets/d0b04286-d068-495c-9907-9498360f67b1" />
+<img width="324" height="413" alt="image" src="https://github.com/user-attachments/assets/68de321a-d5eb-48e9-ae4b-62cecdf790fe" />
+
 A fun game where you fight furniture, 4 enemies for now, will add more.
