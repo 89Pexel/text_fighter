@@ -5,6 +5,8 @@ import sys
 hp = 100
 healers = 3
 score = 0
+enemy_hp = 25912830985787234987293847
+# doesn't matter because it will change after, just to define enemy_hp
 enemies = ["Bed", "Toaster", "Sofa", "Lamp"]
 
 print("--- WELCOME ---")
@@ -19,8 +21,16 @@ print(f"Thank you {name} for playing, I hope you enjoy this game!")
 
 while hp > 0:
     current_enemy = random.choice(enemies)
-    enemy_hp = random.randint(50, 75)
     print(f"\n*** A wild {current_enemy} appeared! ***")
+
+    if current_enemy == "Toaster":
+        enemy_hp = random.randint(55, 80)
+    if current_enemy == "Bed":
+        enemy_hp = random.randint(50, 65)
+    if current_enemy == "Sofa":
+        enemy_hp = random.randint(60, 85)
+    if current_enemy == "Lamp":
+        enemy_hp - random.randint(50, 70)
 
     
     while enemy_hp > 0 and hp > 0:
