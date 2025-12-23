@@ -30,7 +30,7 @@ while hp > 0:
     if current_enemy == "Sofa":
         enemy_hp = random.randint(60, 85)
     if current_enemy == "Lamp":
-        enemy_hp - random.randint(50, 70)
+        enemy_hp = random.randint(50, 70)
 
     
     while enemy_hp > 0 and hp > 0:
@@ -86,7 +86,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp += 2 
-                print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP. Lower damage due to the cushions though.")
+                print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP. Lower damage due to the cushions.")
             elif choice == "2":
                 if healers > 0:
                     hp += 25
@@ -136,5 +136,10 @@ while hp > 0:
             ]
             print(random.choice(messages))
     else:
-        print(f"\n--- GAME OVER ---")
-        print(f"Final Score: {score} enemies defeated.")
+        if score >= 11:
+            print(f"\n--- You lose ---")
+            print(f"Final Score: {score} enemies defeated.")
+            print("You have beaten over 10 enemies. Congratulations!")
+        else:
+            print(f"\n--- You lose ---")    
+            print(f"Final Score: {score} enemies defeated.")
