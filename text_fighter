@@ -86,7 +86,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp += 2 
-                print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP.")
+                print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP. Lower damage due to the cushions though.")
             elif choice == "2":
                 if healers > 0:
                     hp += 25
