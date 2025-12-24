@@ -38,11 +38,11 @@ elif name == "":
 
 elif name == "89Pexel":
     typewriter("Are you kidding me?? Oh fine, I'll give you a chance.")
-    typewriter("What is the passcode?")
+    typewriter("What is the passcode? (Totally not Letmein1)")
     passcode = input()
     if passcode == "OIOIOIGETMEIN":
-        print("Yes!! Amazing!!! How did you know??? Oh of course you are...")
-        print("That's wrong...")
+        typewriter("Yes!! Amazing!!! How did you know??? Oh of course you are...")
+        typewriter("That's wrong...")
         sys.exit()
 
     else:
@@ -50,7 +50,7 @@ elif name == "89Pexel":
         print("Or actually 89Pexel...")
         print("Please wait for your secret access... 3 seconds.")
         time.sleep(3)
-        typewriter("Well I don't believe you...")
+        typewriter("Well I don't believe in you...")
         sys.exit()
 
 
