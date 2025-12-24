@@ -7,9 +7,11 @@ done = False
 hp = 250
 healers = 5
 score = 0
+toaster_encounters = 0
 enemy_hp = 25912830985787234987293847
+passcode = "OIOIOIGETMEIN"
 # doesn't matter because it will change after, just to define enemy_hp
-enemies = ["Bed", "Toaster", "Sofa", "Lamp"]
+enemies = ["Bed", "Toaster", "Sofa", "Lamp", "Car"]
 
 def press_enter():
     print("\n\033[5m<Press enter to continue>\033[0m")
@@ -34,13 +36,31 @@ elif name == "":
     print("Well... You have to have a name!")
     sys.exit()
 
+elif name == "89Pexel":
+    typewriter("Are you kidding me?? Oh fine, I'll give you a chance.")
+    typewriter("What is the passcode?")
+    passcode = input()
+    if passcode == "OIOIOIGETMEIN":
+        print("Yes!! Amazing!!! How did you know??? Oh of course you are...")
+        print("That's wrong...")
+        sys.exit()
+
+    else:
+        print("How did you know??? You must be a genius!")
+        print("Or actually 89Pexel...")
+        print("Please wait for your secret access... 3 seconds.")
+        time.sleep(3)
+        typewriter("Well I don't believe you...")
+        sys.exit()
+
+
 typewriter(f"Thank you {name} for playing, I hope you enjoy this game!")
 
 press_enter()
 
 print("Please note that using certain terminals won't work with the blinking text, VS CODE's terminal won't show the blinking text,")
 print("command prompt has a chance of working and not working, if it does work at first then it'll be fine for the rest of the time.")
-typewriter("Thank you to 89Pexel for coding this game. Thank you to Jotham for adding this and advertising this game.")
+typewriter("Thank you to 89Pexel for coding this game (myself). Thank you to Jotham for adding this and advertising this game.")
 
 while hp > 0:
     current_enemy = random.choice(enemies)
@@ -48,12 +68,15 @@ while hp > 0:
 
     if current_enemy == "Toaster":
         enemy_hp = random.randint(55, 80)
+        toaster_encounters += 1
     if current_enemy == "Bed":
         enemy_hp = random.randint(50, 65)
     if current_enemy == "Sofa":
         enemy_hp = random.randint(60, 85)
     if current_enemy == "Lamp":
         enemy_hp = random.randint(50, 70)
+    if current_enemy == "Car":
+        enemy_hp = random.randint(60, 95)
 
     
     while enemy_hp > 0 and hp > 0:
@@ -135,6 +158,26 @@ while hp > 0:
                     print("Healed +25 HP!")
                 else: print("No healers left!")
 
+        if current_enemy == "Car":
+            if choice == "1":
+                dmg = random.randint(10, 25)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+
+                enemy_hp -= dmg
+                hp -= 7 
+                print(f"You punch the metal! {dmg} dmg to it, 7 dmg to you.")
+            elif choice == "2":
+                if healers > 0:
+                    hp += 25
+                    healers -= 1
+                    print("Healed +25 HP!")
+            else: print("No healers left!")
+            
+
+
         
         if enemy_hp > 0 and hp > 0:
             e_dmg = random.randint(5, 15)
@@ -175,6 +218,19 @@ while hp > 0:
             print(f"{name}: I guess I went on a 24 hour shopping spree...")
 
             press_enter()
+
+        if score == 10:
+
+            press_enter()
+
+            print(f"{name}: Am I really that rich to have that much cars?")
+
+            press_enter()
+        
+        if score == 1 or score == 3 or score == 4:
+            current_enemy = "Toaster"
+        else:
+            current_enemy = random.choice(enemies)
 
         
         
