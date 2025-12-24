@@ -34,7 +34,12 @@ elif name == "":
     print("Well... You have to have a name!")
     sys.exit()
 
-print(f"Thank you {name} for playing, I hope you enjoy this game!")
+typewriter(f"Thank you {name} for playing, I hope you enjoy this game!")
+
+press_enter()
+
+print("Please note that using certain terminals won't work with the blinking text, VS CODE's terminal won't show the blinking text,")
+print("command prompt has a chance of working and not working, if it does work at first then it'll be fine for the rest of the time.")
 
 while hp > 0:
     current_enemy = random.choice(enemies)
