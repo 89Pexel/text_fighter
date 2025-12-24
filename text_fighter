@@ -4,7 +4,7 @@ import time
 
 done = False
 
-hp = 150
+hp = 250
 healers = 5
 score = 0
 enemy_hp = 25912830985787234987293847
@@ -40,6 +40,7 @@ press_enter()
 
 print("Please note that using certain terminals won't work with the blinking text, VS CODE's terminal won't show the blinking text,")
 print("command prompt has a chance of working and not working, if it does work at first then it'll be fine for the rest of the time.")
+typewriter("Thank you to 89Pexel for coding this game. Thank you to Jotham for adding this and advertising this game.")
 
 while hp > 0:
     current_enemy = random.choice(enemies)
@@ -149,6 +150,7 @@ while hp > 0:
         
         if done == True:
             print()
+
         elif done == False:
             random.random() <0.2
 
@@ -157,6 +159,23 @@ while hp > 0:
             press_enter()
 
             done = True
+        
+        if score == 5:
+            
+            press_enter()
+
+            typewriter(f"{name}: Why did I buy so much toasters?")
+
+            press_enter()
+
+        if score == 7:
+
+            press_enter()
+
+            print(f"{name}: I guess I went on a 24 hour shopping spree...")
+
+            press_enter()
+
         
         
         if random.random() < 0.3:
