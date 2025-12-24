@@ -17,6 +17,10 @@ if name.lower() in ["poo", "poop", "poopy"]:
     print("That is very immature!")
     sys.exit()
 
+elif name == "":
+    print("Well... You have to have a name!")
+    sys.exit()
+
 print(f"Thank you {name} for playing, I hope you enjoy this game!")
 
 while hp > 0:
