@@ -2,8 +2,8 @@ import random
 import sys
 
 
-hp = 100
-healers = 3
+hp = 150
+healers = 5
 score = 0
 enemy_hp = 25912830985787234987293847
 # doesn't matter because it will change after, just to define enemy_hp
@@ -54,12 +54,12 @@ while hp > 0:
                     hp += 25
                     healers -= 1
                     print("Healed +25 HP!")
-                else: print("No healers left!")
+            else: print("No healers left!")
 
         
         elif current_enemy == "Bed":
             if choice == "1":
-                dmg = random.randint(12, 18)
+                dmg = random.randint(5, 13)
 
                 if random.random() < 0.2: 
                     dmg = dmg * 2
@@ -97,7 +97,7 @@ while hp > 0:
         
         elif current_enemy == "Lamp":
             if choice == "1":
-                dmg = random.randint(15, 25)
+                dmg = random.randint(5, 17)
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
@@ -140,6 +140,8 @@ while hp > 0:
             print(f"\n--- You lose ---")
             print(f"Final Score: {score} enemies defeated.")
             print("You have beaten over 10 enemies. Congratulations!")
+            print("Amazing!")
         else:
             print(f"\n--- You lose ---")    
             print(f"Final Score: {score} enemies defeated.")
+            print("Nice!")
