@@ -4,8 +4,8 @@ import time
 
 done = False
 
-hp = 250
-healers = 5
+hp = 375
+healers = 10
 score = 0
 toaster_encounters = 0
 enemy_hp = 25912830985787234987293847
@@ -77,6 +77,8 @@ while hp > 0:
         enemy_hp = random.randint(50, 70)
     if current_enemy == "Car":
         enemy_hp = random.randint(60, 95)
+    if current_enemy == "Bread":
+        enemy_hp = random.randint(75, 95)
 
     
     while enemy_hp > 0 and hp > 0:
@@ -175,6 +177,24 @@ while hp > 0:
                     healers -= 1
                     print("Healed +25 HP!")
             else: print("No healers left!")
+
+        if current_enemy == "Bread":
+            if choice == "1":
+                dmg = random.randint(10, 27)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+
+                enemy_hp -= dmg
+                hp -= 5
+                print(f"You punch the food! {dmg} dmg to it, 5 dmg to you... Who knows why?")
+            elif choice == "2":
+                if healers > 0:
+                    hp += 30
+                    healers -= 1
+                    print("Healed +30 HP!")
+            else: print("No healers left!")
             
 
 
@@ -219,13 +239,23 @@ while hp > 0:
 
             press_enter()
 
-        if score == 10:
+        if score == 9:
 
             press_enter()
 
             print(f"{name}: Am I really that rich to have that much cars?")
 
             press_enter()
+
+        if score == 10:
+            typewriter("Level 2! Food!")
+
+            press_enter()
+
+            enemies = ["Bread"]
+            hp = 250
+            healers = 5
+
         
         if score == 1 or score == 3 or score == 4:
             current_enemy = "Toaster"
