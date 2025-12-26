@@ -330,7 +330,7 @@ while hp > 0:
             press_enter()
 
         if score == 10:
-            typewriter("Level 2! Food!")
+            typewriter("Next area!!! Food!")
             typewriter("Your health is 350 and you have gotten +5 healers!")
 
             press_enter()
