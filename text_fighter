@@ -28,6 +28,10 @@ print("--- WELCOME ---")
 
 name = input("Enter your name to play: ").strip()
 
+if len(name) > 25:
+    print("You joking? Your name isn't that long...")
+    sys.exit()
+
 if name.lower() in ["poo", "poop", "poopy"]:
     print("That is very immature!")
     sys.exit()
@@ -290,7 +294,7 @@ while hp > 0:
         elif done == False:
             random.random() <0.2
 
-            typewriter(f"\n{name}: I bought too much furniture...")
+            typewriter(f"\n{name}: I bought too much furniture... (Next level at 5)")
 
             press_enter()
 
@@ -327,20 +331,29 @@ while hp > 0:
 
         if score == 10:
             typewriter("Level 2! Food!")
+            typewriter("Your health is 350 and you have gotten +5 healers!")
 
             press_enter()
 
             enemies = ["Bread", "Toast"]
             hp = 350
-            healers = 5
+            healers += 5
         
         if score == 12:
 
             press_enter()
             
-            typewriter("Who bought so much food?")
+            typewriter("Who bought so much food? (Next level at 23 kills)")
 
             press_enter()
+        
+        if score == 23:
+
+            press_enter()
+
+            typewriter("Your new skill level is 2")
+
+            level = 2
 
         
         if score == 1 or score == 3 or score == 4:
