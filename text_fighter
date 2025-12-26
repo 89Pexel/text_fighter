@@ -14,6 +14,7 @@ passcode = "OIOIOIGETMEIN"
 enemies = ["Bed", "Toaster", "Sofa", "Lamp", "Car"]
 spring = False
 inventory = []
+onlyonce = False
 
 
 def press_enter():
@@ -34,10 +35,10 @@ print("--- WELCOME ---")
 name = input("Enter your name to play: ").strip()
 
 if len(name) > 25:
-    print("You joking? Your name isn't that long...")
+    print("You joking? What kind of name is that long?!?!")
     sys.exit()  
 
-if name.lower() in ["poo", "poop", "poopy"]:
+if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
     print("That is very immature!")
     sys.exit()
 
@@ -119,6 +120,14 @@ while hp > 0:
                     elif use_what == "Pepperoni":
                         print("You throw the Pepperoni, it poisons the opponent! -30 enemy health!")
                         enemy_hp -= 30
+                    elif use_what == "Dough":
+                        print("You gain 3 healers!!!")
+                        healers += 3
+                    elif use_what == "Screw":
+                        print("Are you sure? It will destroy the opponent immediately, best to save when your dying. Press 1 to continue...")
+                        if input == 1:
+                            print("1000000 damage to opponent!")
+                            enemy_hp -= 1000000
                 else:
                     print("You aren't carrying that!")
                
@@ -346,6 +355,20 @@ while hp > 0:
             if random.random() < 0.3:
                 print("The pizza dropped a 'Pepperoni'!")
                 inventory.append("Pepperoni")
+        
+        if current_enemy == "Bread":
+            if random.random() < 0.07:
+                print("The bread drouped 'Dough'!")
+                inventory.append("Dough")
+        
+        if current_enemy == "Car":
+            if random.random() < 0.7:
+                if onlyonce == False:
+                    print("The car dropped a 'Screw'!")
+                    inventory.append("Screw")
+                    onlyonce == True
+                elif onlyonce == True:
+                    continue
         
         
         if done == True:
