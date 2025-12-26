@@ -123,12 +123,14 @@ while hp > 0:
                     elif use_what == "Dough":
                         print("You gain 3 healers!!!")
                         healers += 3
+                        inventory.remove("Pepperoni")
                         inventory.remove("Dough")
                     elif use_what == "Screw":
                         print("Are you sure? It will destroy the opponent immediately, best to save when your dying.")
                         print("Also, you can only gain this item once, which is the one you have right now.")
                         print("Press 1 to use, press anything else to cancel.")
-                        if input == 1:
+                        screw_choice = input(">> ")
+                        if screw_choice == "1":
                             print("1000000 damage to opponent!")
                             enemy_hp -= 1000000
                             inventory.remove("Screw")
@@ -257,12 +259,6 @@ while hp > 0:
                 enemy_hp -= dmg
                 hp += 5
                 print(f"You eat the food! {dmg} dmg to it, +5 health to you... Delicious!")
-            elif choice == "2":
-                if healers > 0:
-                    hp += 30
-                    healers -= 1
-                    print("Healed +30 HP!")
-            else: print("No healers left!")
 
         if current_enemy == "Pizza":
             if choice == "1":
@@ -370,7 +366,7 @@ while hp > 0:
                 if onlyonce == False:
                     print("The car dropped a 'Screw'!")
                     inventory.append("Screw")
-                    onlyonce == True
+                    onlyonce = True
                 elif onlyonce == True:
                     continue
         
