@@ -28,6 +28,22 @@ def typewriter(text, delay=0.03):
         time.sleep(delay)
     print() 
 
+class Color:
+    PURPLE = '\033[95m'
+    CYAN = '\033[96m'
+    DARKCYAN = '\033[36m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+# credit to AI to help search and fine these
+
+
+
 
 
 print("--- WELCOME ---")
@@ -165,7 +181,7 @@ while hp > 0:
             if healers > 0:
                 hp += 25
                 healers -= 1
-                print("Healed +25 HP!")
+                print(f"{Color.GREEN}Healed +25 HP!{Color.END}")
             else:
                 print("No healers left!")
                 continue
@@ -175,7 +191,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 5 
@@ -193,7 +209,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                     dmg = dmg * 2
-                    print("CRITICAL HIT! DOUBLE DAMAGE!")
+                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
 
                 enemy_hp -= dmg
@@ -207,7 +223,7 @@ while hp > 0:
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
-                    print("CRITICAL HIT! DOUBLE DAMAGE!")
+                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp += 2 
@@ -222,7 +238,7 @@ while hp > 0:
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
-                    print("CRITICAL HIT! DOUBLE DAMAGE!")
+                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 print(f"You smash the bulb! {dmg} damage.")
@@ -234,7 +250,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 7 
@@ -252,7 +268,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 5
@@ -266,7 +282,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp += 5
@@ -278,7 +294,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 print(f"You eat the food! {dmg} dmg to it!")
@@ -289,7 +305,7 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print("CRITICAL HIT! DOUBLE DAMAGE!")
+                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 print(f"You roast the marshmallow then eat it! {dmg} dmg to it!")
@@ -460,7 +476,7 @@ while hp > 0:
 
             level = 2
 
-        if score == "5":
+        if score == 5:
             if single == False:
                 typewriter("You find metal, its weird shaped...")
                 print("You found 'Metal'!")
