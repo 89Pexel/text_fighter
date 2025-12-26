@@ -101,6 +101,46 @@ while hp > 0:
         print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ] | Level: {level}")
         choice = input(f"Actions: [1] Attack [2] Heal [3] Use Item [4] Inventory: ")
 
+
+        if choice == "3":
+            if not inventory:
+                print("You have no items to use!")
+                continue
+            else:
+                print(f"Available items: {inventory}")
+                use_what = input("What do you want to use? ").strip()
+                if use_what in inventory:
+                    if use_what == "Lightbulb":
+                        print("You threw a Lightbulb! The enemy is blinded!")
+                        enemy_hp -= 25
+                        inventory.remove("Lightbulb")
+                    elif use_what == "Spring":
+                        print("You throw the spring... it bounces off the enemy's head. Boring.")
+                        enemy_hp -= 2
+                        inventory.remove("Spring")
+                else:
+                    print("You aren't carrying that!")
+               
+
+        elif choice == "4":
+            print("\n--- INVENTORY ---")
+            if not inventory:
+                print("Your pockets are empty...")
+            else:
+                for item in set(inventory):
+                    print(f"- {item} (x{inventory.count(item)})")
+            print("-----------------")
+            continue
+
+      
+        elif choice == "2":
+            if healers > 0:
+                hp += 25
+                healers -= 1
+                print("Healed +25 HP!")
+            else:
+                print("No healers left!")
+                continue
         if current_enemy == "Toaster":
             if choice == "1":
                 dmg = random.randint(10, 15)
@@ -247,35 +287,7 @@ while hp > 0:
                     print("Healed +30 HP!")
             else: print("No healers left!")
 
-    if choice == "3":
-        if not inventory:
-            print("You have no items to use!")
-    else:
-        print(f"Available items: {inventory}")
-        use_what = input("What do you want to use? ").strip()
-        
-        if use_what in inventory:
-            if use_what == "Lightbulb":
-                print("You threw a Lightbulb! The enemy is blinded!")
-                enemy_hp -= 25
-                inventory.remove("Lightbulb")
-            elif use_what == "Spring":
-                print("You throw the spring... it bounces off the enemy's head. Boring.")
-                enemy_hp -= 2
-                inventory.remove("Spring")
-            
-        else:
-            print("You aren't carrying that!")
 
-        if choice == "4":
-           print("\n--- INVENTORY ---")
-        if not inventory:
-           print("Your pockets are empty...")
-        else:
-            for item in set(inventory):
-                print(f"- {item} (x{inventory.count(item)})")
-                print("-----------------")
-                continue
 
 
 
