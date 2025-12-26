@@ -35,7 +35,7 @@ print("--- WELCOME ---")
 name = input("Enter your name to play: ").strip()
 
 if len(name) > 25:
-    print("You joking? What kind of name is that long?!?!")
+    typewriter("You joking? What kind of name is that long?!?!")
     sys.exit()  
 
 if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
@@ -94,6 +94,8 @@ while hp > 0:
         enemy_hp = random.randint(80, 100)
     if current_enemy == "Pizza":
         enemy_hp = random.randint(87, 95)
+    if current_enemy == "Marshmallows":
+        enemy_hp = random.randint(89, 100)
 
     
     while enemy_hp > 0 and hp > 0:
@@ -134,6 +136,16 @@ while hp > 0:
                             print("1000000 damage to opponent!")
                             enemy_hp -= 1000000
                             inventory.remove("Screw")
+                    elif use_what == "Metal":
+                        typewriter("It explodes!")
+                        typewriter("You found a 'Shard'!")
+                        inventory.remove("Metal")
+                        inventory.append("Shard")
+                    elif use_what == "Shard":
+                        typewriter("+50 health!!!!")
+                        hp += 50
+                        inventory.remove("Shard")
+                        
                 else:
                     print("You aren't carrying that!")
                
@@ -271,13 +283,20 @@ while hp > 0:
                 enemy_hp -= dmg
                 print(f"You eat the food! {dmg} dmg to it!")
 
+        if current_enemy == "Marshmallows":
+            if choice == "1":
+                dmg = random.randint(10, 17)
 
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   print("CRITICAL HIT! DOUBLE DAMAGE!")
 
-
-
-
-
-
+                enemy_hp -= dmg
+                print(f"You roast the marshmallow then eat it! {dmg} dmg to it!")
+            elif choice == "2":
+                if healers > 0:
+                    hp += 25
+                    healers -= 1
 
 
             
@@ -320,6 +339,9 @@ while hp > 0:
                     e_dmg = random.randint(7, 15)
                     hp -= e_dmg
                     print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Marshmallows":
+                    e_dmg = random.randint(8, 23)
+                    hp -= e_dmg
 
     
     if hp > 0:
@@ -418,7 +440,7 @@ while hp > 0:
 
             press_enter()
 
-            enemies = ["Bread", "Toast", "Pizza"]
+            enemies = ["Bread", "Toast", "Pizza", "Marshmallows"]
             hp = 350
             healers += 5
         
@@ -438,6 +460,11 @@ while hp > 0:
 
             level = 2
 
+        if score == "5":
+            typewriter("You find metal, its weird shaped...")
+            print("You found 'Metal'!")
+            inventory.append("Metal")
+
         
         if score == 1 or score == 3 or score == 4:
             current_enemy = "Toaster"
@@ -455,6 +482,7 @@ while hp > 0:
             "What's that? Interesting, wait a second... It's a healer!"
             ]
             print(random.choice(messages))
+        
     else:
         if score >= 11:
             print(f"\n--- You lose ---")
