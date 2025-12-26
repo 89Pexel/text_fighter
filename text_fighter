@@ -3,8 +3,8 @@ import sys
 import time
 
 done = False
-
-hp = 375
+level = 0
+hp = 450
 healers = 10
 score = 0
 toaster_encounters = 0
@@ -87,7 +87,7 @@ while hp > 0:
 
     
     while enemy_hp > 0 and hp > 0:
-        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ]")
+        print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ] | Level: {level}")
         choice = input(f"Actions: [1] Attack [2] Heal: ")
 
         
@@ -241,43 +241,46 @@ while hp > 0:
 
         
         if enemy_hp > 0 and hp > 0:
-            if current_enemy == "Toaster":
-                e_dmg = random.randint(5, 17)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Bed":
-                e_dmg = random.randint(4, 20)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Sofa":
-                e_dmg = random.randint(4, 15)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Lamp":
-                e_dmg = random.randint(5, 18)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Car":
-                e_dmg = random.randint(7, 20)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Bread":
-                e_dmg = random.randint(7, 22)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Toast":
-                e_dmg = random.randint(5, 17)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
-            if current_enemy == "Pizza":
-                e_dmg = random.randint(7, 15)
-                hp -= e_dmg
-                print(f"The {current_enemy} hits back for {e_dmg}!")
+            if random.random() < 0.20:
+                print(f"The {current_enemy} tried to hit you but MISSED!")
+            else:
+                if current_enemy == "Toaster":
+                    e_dmg = random.randint(5, 17)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Bed":
+                    e_dmg = random.randint(4, 20)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Sofa":
+                    e_dmg = random.randint(4, 15)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Lamp":
+                    e_dmg = random.randint(5, 18)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Car":
+                    e_dmg = random.randint(7, 20)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Bread":
+                    e_dmg = random.randint(7, 22)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Toast":
+                    e_dmg = random.randint(5, 17)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Pizza":
+                    e_dmg = random.randint(7, 15)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
 
     
     if hp > 0:
         score += 1
-        print(f"\n--- VICTORY! You destroyed the {current_enemy}! ---")
+        print(f"\n--- VICTORY! You destroyed a {current_enemy}! ---")
         print(f"Total enemies defeated so far: {score}")
         
         
@@ -298,8 +301,13 @@ while hp > 0:
             press_enter()
 
             typewriter(f"{name}: Why did I buy so much toasters?")
+            typewriter("Your skill level is now 1!")
+            typewriter("+3 healers!")
 
             press_enter()
+            level = 1
+            healers = 3
+            
 
         if score == 7:
 
@@ -362,4 +370,3 @@ while hp > 0:
             print(f"\n--- You lose ---")    
             print(f"Final Score: {score} enemies defeated.")
             print("Nice!")
-
