@@ -109,15 +109,15 @@ while hp > 0:
                 use_what = input("What do you want to use? ").strip()
                 if use_what in inventory:
                     if use_what == "Lightbulb":
-                        print("You threw a Lightbulb! The enemy is blinded!")
+                        print("You threw a Lightbulb! The enemy is blinded! -25 enemy health!")
                         enemy_hp -= 25
                         inventory.remove("Lightbulb")
                     elif use_what == "Spring":
-                        print("You throw the spring... it bounces off the enemy's head. Boring.")
+                        print("You throw the spring... it bounces off the enemy's head. Boring. -2 enemy health...")
                         enemy_hp -= 2
                         inventory.remove("Spring")
                     elif use_what == "Pepperoni":
-                        print("You throw the Pepperoni, it poisons the opponent!")
+                        print("You throw the Pepperoni, it poisons the opponent! -30 enemy health!")
                         enemy_hp -= 30
                 else:
                     print("You aren't carrying that!")
@@ -322,7 +322,7 @@ while hp > 0:
 
         if spring == False:
             if current_enemy == "Toaster":
-                if random.random() < 0.1:
+                if random.random() < 0.3:
                     print("You find a 'Spring' inside the Toaster!")
                     inventory.append("Spring")
                     spring = True
@@ -338,12 +338,12 @@ while hp > 0:
                 print("You used the spring to get a healer! (+1 Healer)")
 
         if current_enemy == "Lamp":
-            if random.random() < 0.2:
+            if random.random() < 0.3:
                 print("The Lamp dropped a 'Lightbulb'!")
                 inventory.append("Lightbulb")
         
         if current_enemy == "Pizza":
-            if random.random() < 0.2:
+            if random.random() < 0.3:
                 print("The pizza dropped a 'Pepperoni'!")
                 inventory.append("Pepperoni")
         
