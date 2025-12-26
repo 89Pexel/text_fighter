@@ -123,11 +123,15 @@ while hp > 0:
                     elif use_what == "Dough":
                         print("You gain 3 healers!!!")
                         healers += 3
+                        inventory.remove("Dough")
                     elif use_what == "Screw":
-                        print("Are you sure? It will destroy the opponent immediately, best to save when your dying. Press 1 to continue...")
+                        print("Are you sure? It will destroy the opponent immediately, best to save when your dying.")
+                        print("Also, you can only gain this item once, which is the one you have right now.")
+                        print("Press 1 to use, press anything else to cancel.")
                         if input == 1:
                             print("1000000 damage to opponent!")
                             enemy_hp -= 1000000
+                            inventory.remove("Screw")
                 else:
                     print("You aren't carrying that!")
                
