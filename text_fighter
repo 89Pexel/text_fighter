@@ -17,6 +17,14 @@ inventory = []
 onlyonce = False
 single = False
 
+
+flavor_text = {
+    "Toaster": ["It smells like burnt crumbs...", "The lever clicks ominously.", "It's set to 'Dark'!"],
+    "Car": ["The engine revs aggressively.", "The headlights flash at you.", "It's double-parked... on your toes!"],
+}
+
+
+
 def press_enter():
     print("\n\033[5m<Press enter to continue>\033[0m")
     input()
@@ -27,6 +35,11 @@ def typewriter(text, delay=0.03):
         sys.stdout.flush()
         time.sleep(delay)
     print() 
+
+def format_damage(dmg, is_crit=False):
+    if is_crit:
+        return f"\033[5m{Color.YELLOW}★ {dmg} ★{Color.END}" # blinking yellow
+    return f"{Color.RED}{dmg}{Color.END}"
 
 class Color:
     PURPLE = '\033[95m'
@@ -41,6 +54,8 @@ class Color:
     END = '\033[0m'
 
 # credit to AI to help search and fine these
+
+
 
 
 
@@ -112,6 +127,10 @@ while hp > 0:
         enemy_hp = random.randint(87, 95)
     if current_enemy == "Marshmallows":
         enemy_hp = random.randint(89, 100)
+    
+    if current_enemy in flavor_text:
+        print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
+
 
     
     while enemy_hp > 0 and hp > 0:
@@ -181,8 +200,6 @@ while hp > 0:
             if healers > 0:
                 hp += 25
                 healers -= 1
-                print(f"{Color.GREEN}Healed +25 HP!{Color.END}")
-            else:
                 print("No healers left!")
                 continue
         if current_enemy == "Toaster":
@@ -195,11 +212,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp -= 5 
-                print(f"You punch the metal! {dmg} dmg to it, 5 dmg to you.")
-            elif choice == "2":
-                if healers > 0:
-                    hp += 25
-                    healers -= 1
+                print(f"You punch the metal! {format_damage(dmg)} dmg to it, 5 dmg to you.")
 
 
         
@@ -213,7 +226,7 @@ while hp > 0:
 
 
                 enemy_hp -= dmg
-                print(f"You unscrew the Bed! {dmg} damage.")
+                print(f"You unscrew the bed! {format_damage(dmg)} dmg to it!")
 
 
         
@@ -227,7 +240,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp += 2 
-                print(f"Soft punch! {dmg} dmg. The cushions heal you +2 HP. Lower damage due to the cushions.")
+                print(f"Soft punch! {format_damage(dmg)} dmg. The cushions heal you +2 HP. Lower damage due to the cushions.")
 
 
 
@@ -241,7 +254,7 @@ while hp > 0:
                     print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You smash the bulb! {dmg} damage.")
+                print(f"You smash the bulb! {format_damage(dmg)} dmg to it.")
 
 
         if current_enemy == "Car":
@@ -254,7 +267,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp -= 7 
-                print(f"You punch the metal! {dmg} dmg to it, 7 dmg to you.")
+                print(f"You punch the metal! {format_damage(dmg)} dmg to it, 7 dmg to you, OUCH!")
             elif choice == "2":
                 if healers > 0:
                     hp += 25
@@ -272,7 +285,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp -= 5
-                print(f"You punch the food! {dmg} dmg to it, 5 dmg to you... Who knows why?")
+                print(f"You punch the bread! {format_damage(dmg)} dmg to it, for some reason you lost 5 health...")
 
 
 
@@ -286,7 +299,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 hp += 5
-                print(f"You eat the food! {dmg} dmg to it, +5 health to you... Delicious!")
+                print(f"You eat the toast! {format_damage(dmg)} dmg to it, and +5 health, delicious!")
 
         if current_enemy == "Pizza":
             if choice == "1":
@@ -297,7 +310,7 @@ while hp > 0:
                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You eat the food! {dmg} dmg to it!")
+                print(f"You eat the pizza! {format_damage(dmg)} dmg to it!")
 
         if current_enemy == "Marshmallows":
             if choice == "1":
@@ -308,7 +321,7 @@ while hp > 0:
                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You roast the marshmallow then eat it! {dmg} dmg to it!")
+                print(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
             elif choice == "2":
                 if healers > 0:
                     hp += 25
@@ -399,14 +412,11 @@ while hp > 0:
                 print("The bread drouped 'Dough'!")
                 inventory.append("Dough")
         
-        if current_enemy == "Car":
+        if current_enemy == "Car" and not onlyonce:
             if random.random() < 0.7:
-                if onlyonce == False:
-                    print("The car dropped a 'Screw'!")
-                    inventory.append("Screw")
-                    onlyonce = True
-                elif onlyonce == True:
-                    continue
+                print("The car dropped a 'Screw'!")
+                inventory.append("Screw")
+                onlyonce = True
         
         
         if done == True:
