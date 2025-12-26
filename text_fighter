@@ -3,12 +3,12 @@ import sys
 import time
 
 done = False
-level = 0
+level = 1
 hp = 450
 healers = 10
 score = 0
 toaster_encounters = 0
-enemy_hp = 25912830985787234987293847
+enemy_hp = 100
 passcode = "OIOIOIGETMEIN"
 # doesn't matter because it will change after, just to define enemy_hp
 enemies = ["Bed", "Toaster", "Sofa", "Lamp", "Car"]
@@ -19,8 +19,54 @@ single = False
 
 
 flavor_text = {
-    "Toaster": ["It smells like burnt crumbs...", "The lever clicks ominously.", "It's set to 'Dark'!"],
-    "Car": ["The engine revs aggressively.", "The headlights flash at you.", "It's double-parked... on your toes!"],
+    "Toaster": [
+        "It smells like burnt crumbs...",
+        "A piece of charcoal pops out. It's aggressive.",
+        "The lever clicks down. It’s ready for war.",
+        "It’s surprisingly shiny for something so deadly."
+    ],
+    "Car": [
+        "The engine revs menacingly.",
+        "The headlights flash like angry eyes.",
+        "You hear a faint 'beep beep' of pure hatred.",
+        "Is that... a parking ticket under the wiper?"
+    ],
+    "Pizza": [
+        "The cheese is bubbling with rage.",
+        "A rogue pepperoni slice falls off like a scale.",
+        "It’s extra crusty today.",
+        "Pineapple on pizza? The ultimate enemy."
+    ],
+    "Bread": [
+        "It’s a bit stale. This will be a tough fight.",
+        "Gluten-filled and ready to rumble.",
+        "A yeasty aroma fills the room.",
+        "It's just loafing around."
+    ],
+    "Sofa": [
+        "You feel like it wants to swallow you whole.",
+        "A loose spring pokes out threateningly.",
+        "You notice a remote controller inside it, that's where it went!",
+        "It looks very comfortable, but stay alert!"
+    ],
+    "Toast": [
+        "Golden brown and dangerous.",
+        "It’s still warm... but its heart is cold.",
+        "Butter slides off its surface like sweat.",
+        "This toast is toast!"
+    ],
+    "Lamp": [
+        "The light flickers in a Morse code of threats.",
+        "It’s trying to brighten your day... literally to death.",
+        "The bulb hums with electrical energy.",
+        "A moth is circling it, confused by the battle."
+    ],
+    "Marshmallows": [
+        "They look soft, but they have a sticky resolve.",
+        "A giant puff of sugar blocks your path.",
+        "They smell like a campfire and betrayal.",
+        "Squishy... yet menacing."
+    ]
 }
 
 
@@ -53,7 +99,7 @@ class Color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
 
-# credit to AI to help search and fine these
+# credit to AI to help search and find these
 
 
 
@@ -109,24 +155,24 @@ while hp > 0:
     print(f"\n*** A wild {current_enemy} appeared! ***")
 
     if current_enemy == "Toaster":
-        enemy_hp = random.randint(55, 80)
+        enemy_hp = random.randint(55, 80) + (level * 10)
         toaster_encounters += 1
     if current_enemy == "Bed":
-        enemy_hp = random.randint(50, 65)
+        enemy_hp = random.randint(50, 65) + (level * 10)
     if current_enemy == "Sofa":
-        enemy_hp = random.randint(60, 85)
+        enemy_hp = random.randint(60, 85) + (level * 10)
     if current_enemy == "Lamp":
-        enemy_hp = random.randint(50, 70)
+        enemy_hp = random.randint(50, 70) + (level * 10)
     if current_enemy == "Car":
-        enemy_hp = random.randint(60, 95)
+        enemy_hp = random.randint(60, 95) + (level * 10)
     if current_enemy == "Bread":
-        enemy_hp = random.randint(75, 95)
+        enemy_hp = random.randint(75, 95) + (level * 10)
     if current_enemy == "Toast":
-        enemy_hp = random.randint(80, 100)
+        enemy_hp = random.randint(80, 110) + (level * 10)
     if current_enemy == "Pizza":
-        enemy_hp = random.randint(87, 95)
+        enemy_hp = random.randint(94, 130) + (level * 10)
     if current_enemy == "Marshmallows":
-        enemy_hp = random.randint(89, 100)
+        enemy_hp = random.randint(94, 105) + (level * 10)
     
     if current_enemy in flavor_text:
         print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
@@ -157,10 +203,10 @@ while hp > 0:
                     elif use_what == "Pepperoni":
                         print("You throw the Pepperoni, it poisons the opponent! -30 enemy health!")
                         enemy_hp -= 30
+                        inventory.remove("Pepperoni")
                     elif use_what == "Dough":
                         print("You gain 3 healers!!!")
                         healers += 3
-                        inventory.remove("Pepperoni")
                         inventory.remove("Dough")
                     elif use_what == "Screw":
                         print("Are you sure? It will destroy the opponent immediately, best to save when your dying.")
@@ -200,11 +246,13 @@ while hp > 0:
             if healers > 0:
                 hp += 25
                 healers -= 1
+                continue
+            else: 
                 print("No healers left!")
                 continue
         if current_enemy == "Toaster":
             if choice == "1":
-                dmg = random.randint(10, 15)
+                dmg = random.randint(10, 15) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -218,7 +266,7 @@ while hp > 0:
         
         elif current_enemy == "Bed":
             if choice == "1":
-                dmg = random.randint(5, 13)
+                dmg = random.randint(5, 13) + (level * 2)
 
                 if random.random() < 0.2: 
                     dmg = dmg * 2
@@ -232,7 +280,7 @@ while hp > 0:
         
         elif current_enemy == "Sofa":
             if choice == "1":
-                dmg = random.randint(8, 12)
+                dmg = random.randint(8, 12) + (level * 2)
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
@@ -247,7 +295,7 @@ while hp > 0:
         
         elif current_enemy == "Lamp":
             if choice == "1":
-                dmg = random.randint(5, 17)
+                dmg = random.randint(5, 17) + (level * 2)
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
@@ -259,7 +307,7 @@ while hp > 0:
 
         if current_enemy == "Car":
             if choice == "1":
-                dmg = random.randint(10, 25)
+                dmg = random.randint(10, 25) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -268,16 +316,10 @@ while hp > 0:
                 enemy_hp -= dmg
                 hp -= 7 
                 print(f"You punch the metal! {format_damage(dmg)} dmg to it, 7 dmg to you, OUCH!")
-            elif choice == "2":
-                if healers > 0:
-                    hp += 25
-                    healers -= 1
-                    print("Healed +25 HP!")
-            else: print("No healers left!")
 
         if current_enemy == "Bread":
             if choice == "1":
-                dmg = random.randint(10, 27)
+                dmg = random.randint(10, 27) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -291,7 +333,7 @@ while hp > 0:
 
         if current_enemy == "Toast":
             if choice == "1":
-                dmg = random.randint(5, 20)
+                dmg = random.randint(5, 20) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -303,7 +345,7 @@ while hp > 0:
 
         if current_enemy == "Pizza":
             if choice == "1":
-                dmg = random.randint(5, 25)
+                dmg = random.randint(5, 25) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -314,7 +356,7 @@ while hp > 0:
 
         if current_enemy == "Marshmallows":
             if choice == "1":
-                dmg = random.randint(10, 17)
+                dmg = random.randint(10, 27) + (level * 2)
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
@@ -322,10 +364,7 @@ while hp > 0:
 
                 enemy_hp -= dmg
                 print(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
-            elif choice == "2":
-                if healers > 0:
-                    hp += 25
-                    healers -= 1
+
 
 
             
@@ -371,6 +410,7 @@ while hp > 0:
                 if current_enemy == "Marshmallows":
                     e_dmg = random.randint(8, 23)
                     hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
 
     
     if hp > 0:
@@ -485,6 +525,15 @@ while hp > 0:
             typewriter("Your new skill level is 2")
 
             level = 2
+        
+        if score == 30:
+
+            press_enter()
+
+            print("Area 3!")
+            typewriter("Will put later just continue on area 2")
+
+            press_enter()
 
         if score == 5:
             if single == False:
@@ -493,7 +542,7 @@ while hp > 0:
                 inventory.append("Metal")
                 single = True
             elif single == True:
-                continue
+                print()
 
         
         if score == 1 or score == 3 or score == 4:
