@@ -12,6 +12,10 @@ enemy_hp = 25912830985787234987293847
 passcode = "OIOIOIGETMEIN"
 # doesn't matter because it will change after, just to define enemy_hp
 enemies = ["Bed", "Toaster", "Sofa", "Lamp", "Car"]
+spring = False
+inventory = []
+
+current_enemy = None
 
 def press_enter():
     print("\n\033[5m<Press enter to continue>\033[0m")
@@ -24,13 +28,15 @@ def typewriter(text, delay=0.03):
         time.sleep(delay)
     print() 
 
+
+
 print("--- WELCOME ---")
 
 name = input("Enter your name to play: ").strip()
 
 if len(name) > 25:
     print("You joking? Your name isn't that long...")
-    sys.exit()
+    sys.exit()  
 
 if name.lower() in ["poo", "poop", "poopy"]:
     print("That is very immature!")
@@ -68,8 +74,9 @@ typewriter("Thank you to 89Pexel for coding this game (myself). Thank you to Jot
 typewriter("Thank you for playing this game, I didn't make the enemies as thugs or some of you might get nightmares, just ask and I'll make a new version.")
 
 while hp > 0:
-    current_enemy = random.choice(enemies)
-    print(f"\n*** A wild {current_enemy} appeared! ***")
+    if current_enemy is None:
+        current_enemy = random.choice(enemies)
+        print(f"\n*** A wild {current_enemy} appeared! ***")
 
     if current_enemy == "Toaster":
         enemy_hp = random.randint(55, 80)
@@ -92,9 +99,17 @@ while hp > 0:
     
     while enemy_hp > 0 and hp > 0:
         print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ] | Level: {level}")
-        choice = input(f"Actions: [1] Attack [2] Heal: ")
+        choice = input(f"Actions: [1] Attack [2] Heal [3] Use Item: ")
 
-        
+        if choice == "3":
+            if "Lightbulb" in inventory:
+                print("You threw a Lightbulb! The enemy is blinded!")
+                enemy_hp -= 25
+                inventory.remove("Lightbulb")
+            else:
+                print("You have no items!")
+
+
         if current_enemy == "Toaster":
             if choice == "1":
                 dmg = random.randint(10, 15)
@@ -240,6 +255,13 @@ while hp > 0:
                     healers -= 1
                     print("Healed +30 HP!")
             else: print("No healers left!")
+
+            # ... all your level up code ...
+
+
+            if score not in [1, 3, 4]: 
+               current_enemy = None 
+
             
 
 
@@ -286,19 +308,41 @@ while hp > 0:
         score += 1
         print(f"\n--- VICTORY! You destroyed a {current_enemy}! ---")
         print(f"Total enemies defeated so far: {score}")
+
+        if spring == False:
+            if current_enemy == "Toaster":
+                if random.random() < 0.1:
+                    print("You find a 'Spring' inside the Toaster!")
+                    inventory.append("Spring")
+                    spring = True
+        
+        if spring == True:
+            print(f"\nTo exchange for 1 healer press 1")
+            choice = input(">> ")
+            
+            if choice == "1":
+                inventory.remove("Spring")
+                healers += 1
+                spring = False
+                print("You used the spring to get a healer! (+1 Healer)")
+
+        if current_enemy == "Lamp":
+            if random.random() < 0.2:
+                print("The Lamp dropped a Lightbulb!")
+                inventory.append("Lightbulb")
         
         
         if done == True:
             print()
 
         elif done == False:
-            random.random() <0.2
+            if score == 1:
 
-            typewriter(f"\n{name}: I bought too much furniture... (Next level at 5)")
+               typewriter(f"\n{name}: I bought too much furniture...")
 
-            press_enter()
+               press_enter()
 
-            done = True
+               done = True
         
         if score == 5:
             
@@ -310,7 +354,7 @@ while hp > 0:
 
             press_enter()
             level = 1
-            healers = 3
+            healers += 3
             
 
         if score == 7:
@@ -335,7 +379,7 @@ while hp > 0:
 
             press_enter()
 
-            enemies = ["Bread", "Toast"]
+            enemies = ["Bread", "Toast", "Pizza"]
             hp = 350
             healers += 5
         
@@ -358,8 +402,7 @@ while hp > 0:
         
         if score == 1 or score == 3 or score == 4:
             current_enemy = "Toaster"
-        else:
-            current_enemy = random.choice(enemies)
+
 
         
         
