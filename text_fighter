@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+import os
 
 done = False
 level = 1
@@ -25,7 +26,14 @@ achievements = {
     "The 89Pexel Special": False # name (you can never get it because you'll get sys.exit()'ed lol)
 }
 
+victory_messages = [
+    "You showed that appliance who's boss!",
+    "That'll teach it to look at you funny.",
+    "Target neutralized. Cleaning crew requested.",
+    "Another one bites the dust (literally, it was a Bed)."
+]
 
+os.system(f"title Furniture Slayer - Score: {score}")
 
 flavor_text = {
     "Toaster": [
@@ -144,7 +152,6 @@ system_messages = [
 
 
 
-
 #  start
 
 print("--- WELCOME ---")
@@ -155,6 +162,13 @@ if len(name) > 25:
     typewriter("You joking? What kind of name is that long?!?!")
     sys.exit()  
 
+elif len(name) == 1:
+    typewriter("A one-letter name? You're mysterious. I like it. Just kidding.")
+    sys.exit()
+elif name.isdigit():
+    typewriter("Your name is a number? Are you a robot too?")
+    sys.exit()
+
 if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
     print("That is very immature!")
     sys.exit()
@@ -162,6 +176,12 @@ if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
 elif name == "":
     print("Well... You have to have a name!")
     sys.exit()
+
+elif name.lower() == "jotham":
+    typewriter("Oh, the advertiser! Welcome to the game you've been talking about.")
+    typewriter("But are you really?")
+elif name.lower() == "toaster":
+    typewriter("Wait... you're a toaster? This is going to be awkward.")
 
 elif name == "89Pexel":
     achievements["The 89Pexel Special"] = True
@@ -235,6 +255,7 @@ while hp > 0:
             else:
                 print(f"Available items: {inventory}")
                 use_what = input("What do you want to use? ").strip()
+                
                 if use_what in inventory:
                     if use_what == "Lightbulb":
                         print("You threw a Lightbulb! The enemy is blinded! -25 enemy health!")
@@ -468,7 +489,7 @@ while hp > 0:
     
     if hp > 0:
         score += 1
-        print(f"\n--- VICTORY! You destroyed a {current_enemy}! ---")
+        print(f"\n--- {random.choice(victory_messages)} ---")
         print(f"Total enemies defeated so far: {score}")
 
 
