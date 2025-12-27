@@ -109,9 +109,13 @@ system_messages = [
     f"{Color.CYAN}[INFO]: I've seen better combat from a screensaver.{Color.END}",
     f"{Color.RED}[ERROR 418]: I'm a teapot, and even I fight better than you.{Color.END}",
     f"{Color.PURPLE}[SYSTEM]: Error 404 - Skill not found.{Color.END}",
-    f"{Color.PURPLE}[SYSTEM]: Updating 'Days Since Last Embarrassment' to: 0.{Color.END}"
+    f"{Color.PURPLE}[SYSTEM]: Updating 'Days Since Last Embarrassment' to: 0.{Color.END}",
+    f"{Color.YELLOW}[WARNING]: User coordination is below 1%. Is a cat walking on the keyboard?{Color.END}",
+    f"{Color.BLUE}[SYNC]: Attempting to sync with player's brain... Error: No signal found.{Color.END}",
+    f"{Color.RED}[FATAL]: Your combat logic is written in C- (C-Minus).{Color.END}",
+    f"{Color.DARKCYAN}[SYSTEM]: Calculating win probability... [0.000001%]. So you're saying there's a chance?{Color.END}",
+    f"{Color.GREEN}[LOG]: User used 'Stare Blankly'. It wasn't very effective.{Color.END}"
 ]
-
 
 
 
@@ -379,6 +383,14 @@ while hp > 0:
                 enemy_hp -= dmg
                 print(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
 
+            
+        if random.random() < 0.2:
+           typewriter("\n" + random.choice(system_messages))
+           
+
+        if hp < 50 and random.random() < 0.3:
+            typewriter(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
+
 
 
             
@@ -474,12 +486,7 @@ while hp > 0:
         
 # prompts and levels  
 
-        if random.random() < 0.50:
-           typewriter("\n" + random.choice(system_messages))
-           time.sleep(1)
 
-        if hp < 50 and random.random() < 0.5:
-            typewriter(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
 
         if done == True:
             print()
