@@ -465,7 +465,7 @@ while hp > 0:
         print(f"Total enemies defeated so far: {score}")
 
 
-
+        check_achievements()
         
 
         if spring == False:
@@ -631,4 +631,4 @@ while hp > 0:
             for a in earned:
                 print(f"- {a}")
         else:
-            print("None... yet. Keep fighting the furniture!")
+            print("No achievements... yet. Keep fighting the furniture!")
