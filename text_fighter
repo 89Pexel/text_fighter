@@ -402,6 +402,13 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(10, 27) + (level * 2)
 
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
+
+                enemy_hp -= dmg
+                typewriter(f"You eat the marshmallow. {format_damage(dmg)} dmg to it!")
+
 
 
             
@@ -497,7 +504,7 @@ while hp > 0:
         
         if current_enemy == "Bread":
             if random.random() < 0.07:
-                print("The bread drouped 'Dough'!")
+                print("The bread dropped 'Dough'!")
                 inventory.append("Dough")
         
         if current_enemy == "Car" and not onlyonce:
