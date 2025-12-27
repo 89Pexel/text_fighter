@@ -105,11 +105,11 @@ class Color:
 
 
 system_messages = [
-    f"{Color.PURPLE}[SYSTEM]: Warning - Toaster crumbs detected in CPU.{Color.END}",
-    f"{Color.PURPLE}[ALERT]: Your Sofa is looking at you weirdly.{Color.END}",
-    f"{Color.PURPLE}[INFO]: 89Pexel is watching you play...{Color.END}",
+    f"{Color.RED}[CRITICAL]: Brain.exe has stopped working. Please reboot user.{Color.END}",
+    f"{Color.CYAN}[INFO]: I've seen better combat from a screensaver.{Color.END}",
+    f"{Color.RED}[ERROR 418]: I'm a teapot, and even I fight better than you.{Color.END}",
     f"{Color.PURPLE}[SYSTEM]: Error 404 - Skill not found.{Color.END}",
-    f"{Color.PURPLE}[ALERT]: High levels of gluten detected in the area!{Color.END}"
+    f"{Color.PURPLE}[SYSTEM]: Updating 'Days Since Last Embarrassment' to: 0.{Color.END}"
 ]
 
 
