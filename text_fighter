@@ -17,6 +17,13 @@ inventory = []
 onlyonce = False
 single = False
 
+achievements = {
+    "Bread Winner": False,      # defeat 5 food items
+    "Crumby Death": False,      # encounter 5 toasters
+    "Interior Decorator": False,# defeat a Bed, Sofa, and Lamp
+    "Hoarder": False,           # 5+ items in inventory
+    "The 89Pexel Special": False # name (you can never get it because you'll get sys.exit()'ed lol)
+}
 
 
 
@@ -89,6 +96,24 @@ def format_damage(dmg, is_crit=False):
         return f"\033[5m{Color.YELLOW}★ {dmg} ★{Color.END}" # blinking yellow
     return f"{Color.RED}{dmg}{Color.END}"
 
+def check_achievements():
+    global achievements
+    
+    # Crumby Death - Tracking toaster encounters
+    if toaster_encounters >= 5 and not achievements["Crumby Death"]:
+        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Crumby Death (Survive 5 Toasters){Color.END}")
+        achievements["Crumby Death"] = True
+
+    # Bread Winner - If the score is high and you're in the food area
+    if score >= 15 and "Pizza" in enemies and not achievements["Bread Winner"]:
+        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Bread Winner (Survived the Pantry){Color.END}")
+        achievements["Bread Winner"] = True
+
+    # Hoarder - Check inventory length
+    if len(inventory) >= 5 and not achievements["Hoarder"]:
+        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Hoarder (Pack Rat status achieved){Color.END}")
+        achievements["Hoarder"] = True
+
 class Color:
     PURPLE = '\033[95m'
     CYAN = '\033[96m'
@@ -139,6 +164,7 @@ elif name == "":
     sys.exit()
 
 elif name == "89Pexel":
+    achievements["The 89Pexel Special"] = True
     typewriter("Are you kidding me?? Oh fine, I'll give you a chance.")
     typewriter("What is the passcode? (Totally not Letmein1)")
     passcode = input()
@@ -376,12 +402,7 @@ while hp > 0:
             if choice == "1":
                 dmg = random.randint(10, 27) + (level * 2)
 
-                if random.random() < 0.2: 
-                   dmg = dmg * 2
-                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
-                enemy_hp -= dmg
-                typewriter(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
 
             
         if random.random() < 0.2:
@@ -390,7 +411,6 @@ while hp > 0:
 
         if hp < 50 and random.random() < 0.3:
             typewriter(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
-
 
 
             
@@ -443,6 +463,8 @@ while hp > 0:
         score += 1
         print(f"\n--- VICTORY! You destroyed a {current_enemy}! ---")
         print(f"Total enemies defeated so far: {score}")
+
+
 
         
 
@@ -601,3 +623,12 @@ while hp > 0:
             print(f"\n--- You lose ---")    
             print(f"Final Score: {score} enemies defeated.")
             print("Nice!")
+
+        
+        print("\n--- ACHIEVEMENTS EARNED ---")
+        earned = [name for name, status in achievements.items() if status]
+        if earned:
+            for a in earned:
+                print(f"- {a}")
+        else:
+            print("None... yet. Keep fighting the furniture!")
