@@ -30,7 +30,7 @@ victory_messages = [
     "You showed that appliance who's boss!",
     "That'll teach it to look at you funny.",
     "Target neutralized. Cleaning crew requested.",
-    "Another one bites the dust (literally, it was a Bed)."
+    "Another one bites the dust."
 ]
 
 os.system(f"title Furniture Slayer - Score: {score}")
@@ -259,7 +259,7 @@ while hp > 0:
                 if use_what in inventory:
                     if use_what == "Lightbulb":
                         print("You threw a Lightbulb! The enemy is blinded! -25 enemy health!")
-                        enemy_hp -= 25
+                        enemy_hp -= 25 * {level}
                         inventory.remove("Lightbulb")
                     elif use_what == "Spring":
                         print("You throw the spring... it bounces off the enemy's head. Boring. -2 enemy health...")
@@ -267,7 +267,7 @@ while hp > 0:
                         inventory.remove("Spring")
                     elif use_what == "Pepperoni":
                         print("You throw the Pepperoni, it poisons the opponent! -30 enemy health!")
-                        enemy_hp -= 30
+                        enemy_hp -= 30 * {level}
                         inventory.remove("Pepperoni")
                     elif use_what == "Dough":
                         print("You gain 3 healers!!!")
@@ -280,7 +280,7 @@ while hp > 0:
                         screw_choice = input(">> ")
                         if screw_choice == "1":
                             print("1000000 damage to opponent!")
-                            enemy_hp -= 1000000
+                            enemy_hp -= 1000000 
                             inventory.remove("Screw")
                     elif use_what == "Metal":
                         typewriter("It explodes!")
