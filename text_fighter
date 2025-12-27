@@ -474,12 +474,12 @@ while hp > 0:
         
 # prompts and levels  
 
-        if random.random() < 0.15:
-           print("\n" + random.choice(system_messages))
+        if random.random() < 0.50:
+           typewriter("\n" + random.choice(system_messages))
            time.sleep(1)
 
         if hp < 50 and random.random() < 0.5:
-            print(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
+            typewriter(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
 
         if done == True:
             print()
