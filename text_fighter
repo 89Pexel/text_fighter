@@ -266,7 +266,7 @@ while hp > 0:
                 healers -= 1
                 continue
             else: 
-                print("No healers left!")
+                typewriter("No healers left!")
                 continue
         if current_enemy == "Toaster":
             if choice == "1":
@@ -274,11 +274,11 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 5 
-                print(f"You punch the metal! {format_damage(dmg)} dmg to it, 5 dmg to you.")
+                typewriter(f"You punch the metal! {format_damage(dmg)} dmg to it, 5 dmg to you.")
 
 
         
@@ -288,11 +288,11 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                     dmg = dmg * 2
-                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                    typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
 
                 enemy_hp -= dmg
-                print(f"You unscrew the bed! {format_damage(dmg)} dmg to it!")
+                typewriter(f"You unscrew the bed! {format_damage(dmg)} dmg to it!")
 
 
         
@@ -302,11 +302,11 @@ while hp > 0:
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
-                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                    typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp += 2 
-                print(f"Soft punch! {format_damage(dmg)} dmg. The cushions heal you +2 HP. Lower damage due to the cushions.")
+                typewriter(f"Soft punch! {format_damage(dmg)} dmg. The cushions heal you +2 HP. Lower damage due to the cushions.")
 
 
 
@@ -317,10 +317,10 @@ while hp > 0:
 
                 if random.random() < 0.2:
                     dmg = dmg * 2
-                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                    typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You smash the bulb! {format_damage(dmg)} dmg to it.")
+                typewriter(f"You smash the bulb! {format_damage(dmg)} dmg to it.")
 
 
         if current_enemy == "Car":
@@ -329,11 +329,11 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 7 
-                print(f"You punch the metal! {format_damage(dmg)} dmg to it, 7 dmg to you, OUCH!")
+                typewriter(f"You punch the metal! {format_damage(dmg)} dmg to it, 7 dmg to you, OUCH!")
 
         if current_enemy == "Bread":
             if choice == "1":
@@ -341,11 +341,11 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp -= 5
-                print(f"You punch the bread! {format_damage(dmg)} dmg to it, for some reason you lost 5 health...")
+                typewriter(f"You punch the bread! {format_damage(dmg)} dmg to it, for some reason you lost 5 health...")
 
 
 
@@ -355,11 +355,11 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
                 hp += 5
-                print(f"You eat the toast! {format_damage(dmg)} dmg to it, and +5 health, delicious!")
+                typewriter(f"You eat the toast! {format_damage(dmg)} dmg to it, and +5 health, delicious!")
 
         if current_enemy == "Pizza":
             if choice == "1":
@@ -367,10 +367,10 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You tell it pinapple doesn't go on pizza. {format_damage(dmg)} dmg to it!")
+                typewriter(f"You tell it pinapple doesn't go on pizza. {format_damage(dmg)} dmg to it!")
 
         if current_enemy == "Marshmallows":
             if choice == "1":
@@ -378,10 +378,10 @@ while hp > 0:
 
                 if random.random() < 0.2: 
                    dmg = dmg * 2
-                   print(f"{Color.RED}CRITICAL HIT!{Color.END}")
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
+                typewriter(f"You roast the marshmallow then eat it! {format_damage(dmg)} dmg to it!")
 
             
         if random.random() < 0.2:
