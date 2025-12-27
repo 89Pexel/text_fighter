@@ -9,13 +9,15 @@ healers = 10
 score = 0
 toaster_encounters = 0
 enemy_hp = 100
+# doesn't matter because it will change after, this is just to define enemy_hp
 passcode = "OIOIOIGETMEIN"
-# doesn't matter because it will change after, just to define enemy_hp
 enemies = ["Bed", "Toaster", "Sofa", "Lamp", "Car"]
 spring = False
 inventory = []
 onlyonce = False
 single = False
+
+
 
 
 flavor_text = {
@@ -102,10 +104,19 @@ class Color:
 # credit to AI to help search and find these
 
 
+system_messages = [
+    f"{Color.PURPLE}[SYSTEM]: Warning - Toaster crumbs detected in CPU.{Color.END}",
+    f"{Color.PURPLE}[ALERT]: Your Sofa is looking at you weirdly.{Color.END}",
+    f"{Color.PURPLE}[INFO]: 89Pexel is watching you play...{Color.END}",
+    f"{Color.PURPLE}[SYSTEM]: Error 404 - Skill not found.{Color.END}",
+    f"{Color.PURPLE}[ALERT]: High levels of gluten detected in the area!{Color.END}"
+]
 
 
 
 
+
+#  start
 
 print("--- WELCOME ---")
 
@@ -150,6 +161,9 @@ print("command prompt has a chance of working and not working, if it does work a
 typewriter("Thank you to 89Pexel for coding this game (myself). Thank you to Jotham for adding this and advertising this game.")
 typewriter("Thank you for playing this game, I didn't make the enemies as thugs or some of you might get nightmares, just ask and I'll make a new version.")
 
+
+# health
+
 while hp > 0:
     current_enemy = random.choice(enemies)
     print(f"\n*** A wild {current_enemy} appeared! ***")
@@ -177,7 +191,7 @@ while hp > 0:
     if current_enemy in flavor_text:
         print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
 
-
+# battle and actions
     
     while enemy_hp > 0 and hp > 0:
         print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ] | Level: {level}")
@@ -352,7 +366,7 @@ while hp > 0:
                    print(f"{Color.RED}CRITICAL HIT!{Color.END}")
 
                 enemy_hp -= dmg
-                print(f"You eat the pizza! {format_damage(dmg)} dmg to it!")
+                print(f"You tell it pinapple doesn't go on pizza. {format_damage(dmg)} dmg to it!")
 
         if current_enemy == "Marshmallows":
             if choice == "1":
@@ -368,7 +382,7 @@ while hp > 0:
 
 
             
-
+# damage 
 
         
         if enemy_hp > 0 and hp > 0:
@@ -411,7 +425,7 @@ while hp > 0:
                     e_dmg = random.randint(8, 23)
                     hp -= e_dmg
                     print(f"The {current_enemy} hits back for {e_dmg}!")
-
+# win and drops
     
     if hp > 0:
         score += 1
@@ -458,7 +472,15 @@ while hp > 0:
                 inventory.append("Screw")
                 onlyonce = True
         
-        
+# prompts and levels  
+
+        if random.random() < 0.15:
+           print("\n" + random.choice(system_messages))
+           time.sleep(1)
+
+        if hp < 50 and random.random() < 0.5:
+            print(f"{Color.RED}[SYSTEM]: Critical failure imminent. Have you tried NOT dying?{Color.END}")
+
         if done == True:
             print()
 
@@ -548,7 +570,7 @@ while hp > 0:
         if score == 1 or score == 3 or score == 4:
             current_enemy = "Toaster"
 
-
+# healers
         
         
         if random.random() < 0.3:
@@ -561,7 +583,7 @@ while hp > 0:
             "What's that? Interesting, wait a second... It's a healer!"
             ]
             print(random.choice(messages))
-        
+# loss      
     else:
         if score >= 11:
             print(f"\n--- You lose ---")
