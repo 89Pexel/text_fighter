@@ -169,7 +169,7 @@ elif name.isdigit():
     typewriter("Your name is a number? Are you a robot too?")
     sys.exit()
 
-if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
+if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot", "butt", "moron"]:
     print("That is very immature!")
     sys.exit()
 
@@ -237,6 +237,12 @@ while hp > 0:
         enemy_hp = random.randint(94, 130) + (level * 10)
     if current_enemy == "Marshmallows":
         enemy_hp = random.randint(94, 105) + (level * 10)
+    if current_enemy == "Chair":
+        enemy_hp = random.randint(100, 154) + (level * 20)
+    if current_enemy == "Computer":
+        enemy_hp = random.randint(110, 154) + (level * 25)
+    if current_enemy == "Book":
+        enemy_hp = random.randint(99, 120) + (level * 15)
     
     if current_enemy in flavor_text:
         print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
@@ -431,6 +437,42 @@ while hp > 0:
                 typewriter(f"You eat the marshmallow. {format_damage(dmg)} dmg to it!")
 
 
+        if current_enemy == "Chair":
+            if choice == "1":
+                dmg = random.randint(15, 23) + (level * 2)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
+
+                enemy_hp -= dmg
+                typewriter(f"You smash the chair! {format_damage(dmg)} dmg to it! -5 health to you.")
+                hp -= 5
+
+
+        if current_enemy == "Computer":
+            if choice == "1":
+                dmg = random.randint(12, 19) + (level * 2)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
+
+                enemy_hp -= dmg
+                typewriter(f"You smash the computer! {format_damage(dmg)} dmg to it! Glass shards hit you! -7 health to you.")
+                hp -= 7
+
+        if current_enemy == "Book":
+            if choice == "1":
+                dmg = random.randint(12, 13) + (level * 2)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
+
+                enemy_hp -= dmg
+                typewriter(f"You smash the book! {format_damage(dmg)} dmg to it!")
+
 
             
         if random.random() < 0.2:
@@ -485,6 +527,18 @@ while hp > 0:
                     e_dmg = random.randint(8, 23)
                     hp -= e_dmg
                     print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Chair":
+                    e_dmg = random.randint(5, 27)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Computer":
+                    e_dmg = random.randint(10, 32)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                if current_enemy == "Book":
+                    e_dmg = random.randint(15, 21)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
 # win and drops
     
     if hp > 0:
@@ -534,6 +588,11 @@ while hp > 0:
                 inventory.append("Screw")
                 onlyonce = True
         
+        if current_enemy == "Computer":
+            if random.random() < 0.1:
+                print("The computer dropped a 'Shard'!")
+                inventory.append("Screw")
+                
 # prompts and levels  
 
 
@@ -610,7 +669,15 @@ while hp > 0:
             press_enter()
 
             print("Area 3!")
-            typewriter("Will put later just continue on area 2")
+            typewriter("Office")
+            typewriter("Your new skill level is 3")
+            typewriter("+3 healers")
+            typewriter("+500 health")
+
+            level = 3
+            healers +=3
+            health += 500
+            enemies = ["Chair", "Computer", "Book",]
 
             press_enter()
 
