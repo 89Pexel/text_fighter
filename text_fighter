@@ -109,17 +109,17 @@ def check_achievements():
     
     # Crumby Death - Tracking toaster encounters
     if toaster_encounters >= 5 and not achievements["Crumby Death"]:
-        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Crumby Death (Survive 5 Toasters){Color.END}")
+        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Crumby Death{Color.END}")
         achievements["Crumby Death"] = True
 
     # Bread Winner - If the score is high and you're in the food area
     if score >= 15 and "Pizza" in enemies and not achievements["Bread Winner"]:
-        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Bread Winner (Survived the Pantry){Color.END}")
+        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Bread Winner{Color.END}")
         achievements["Bread Winner"] = True
 
     # Hoarder - Check inventory length
     if len(inventory) >= 5 and not achievements["Hoarder"]:
-        print(f"\n{Color.YELLOW}🏆 ACHIEVEMENT UNLOCKED: Hoarder (Pack Rat status achieved){Color.END}")
+        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Hoarder{Color.END}")
         achievements["Hoarder"] = True
 
 class Color:
