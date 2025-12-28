@@ -243,6 +243,8 @@ while hp > 0:
         enemy_hp = random.randint(110, 154) + (level * 25)
     if current_enemy == "Book":
         enemy_hp = random.randint(99, 120) + (level * 15)
+    if current_enemy == "Cable":
+        enemy_hp = random.randint(108, 129) + (level * 25)
     
     if current_enemy in flavor_text:
         print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
@@ -473,6 +475,18 @@ while hp > 0:
                 enemy_hp -= dmg
                 typewriter(f"You smash the book! {format_damage(dmg)} dmg to it!")
 
+        if current_enemy == "Cable":
+            if choice == "1":
+                dmg = random.randint(12, 19) + (level * 2)
+
+                if random.random() < 0.2: 
+                   dmg = dmg * 2
+                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
+
+                enemy_hp -= dmg
+                typewriter(f"You cut the wire! {format_damage(dmg)} dmg to it!")
+
+
 
             
         if random.random() < 0.2:
@@ -494,15 +508,15 @@ while hp > 0:
                 if current_enemy == "Toaster":
                     e_dmg = random.randint(5, 17)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} sends toasts in your eyes back for {e_dmg}!")
                 if current_enemy == "Bed":
                     e_dmg = random.randint(4, 20)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} hits you back for {e_dmg}!")
                 if current_enemy == "Sofa":
                     e_dmg = random.randint(4, 15)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} goes on you for {e_dmg}!")
                 if current_enemy == "Lamp":
                     e_dmg = random.randint(5, 18)
                     hp -= e_dmg
@@ -510,35 +524,39 @@ while hp > 0:
                 if current_enemy == "Car":
                     e_dmg = random.randint(7, 20)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} drives on you for {e_dmg}!")
                 if current_enemy == "Bread":
                     e_dmg = random.randint(7, 22)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} hits you back for {e_dmg}!")
                 if current_enemy == "Toast":
                     e_dmg = random.randint(5, 17)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} burns you back for {e_dmg}!")
                 if current_enemy == "Pizza":
                     e_dmg = random.randint(7, 15)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} burns you back for {e_dmg}!")
                 if current_enemy == "Marshmallows":
                     e_dmg = random.randint(8, 23)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} burns you back for {e_dmg}!")
                 if current_enemy == "Chair":
                     e_dmg = random.randint(5, 27)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} falls on you for {e_dmg}!")
                 if current_enemy == "Computer":
                     e_dmg = random.randint(10, 32)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} shards you back for {e_dmg}!")
                 if current_enemy == "Book":
                     e_dmg = random.randint(15, 21)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits back for {e_dmg}!")
+                    print(f"The {current_enemy} gives you a papercut back for {e_dmg}!")
+                if current_enemy == "Cable":
+                    e_dmg = random.randint(19, 37)
+                    hp -= e_dmg
+                    print(f"The {current_enemy} zaps you back for {e_dmg}!")
 # win and drops
     
     if hp > 0:
@@ -677,7 +695,7 @@ while hp > 0:
             level = 3
             healers +=3
             health += 500
-            enemies = ["Chair", "Computer", "Book",]
+            enemies = ["Chair", "Computer", "Book", "Cable"]
 
             press_enter()
 
