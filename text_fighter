@@ -694,7 +694,7 @@ while hp > 0:
 
             level = 3
             healers +=3
-            health += 500
+            hp += 500
             enemies = ["Chair", "Computer", "Book", "Cable"]
 
             press_enter()
@@ -735,10 +735,10 @@ while hp > 0:
             print(random.choice(messages))
 # loss      
     else:
-        if score >= 11:
+        if score >= 21:
             print(f"\n--- You lose ---")
             print(f"Final Score: {score} enemies defeated.")
-            print("You have beaten over 10 enemies. Congratulations!")
+            print("You have beaten over 20 enemies. Congratulations!")
             print("Amazing!")
         else:
             print(f"\n--- You lose ---")    
