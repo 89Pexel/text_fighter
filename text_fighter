@@ -698,6 +698,14 @@ while hp > 0:
             enemies = ["Chair", "Computer", "Book", "Cable"]
 
             press_enter()
+        
+        if score == 45:
+
+            press_enter()
+
+            typewriter("I will update this to have a new area (area 5, bathroom)")
+
+            press_enter()
 
         if score == 5:
             if single == False:
