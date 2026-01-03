@@ -3,8 +3,6 @@ import sys
 import time
 import os
 
-
-
 done = False
 level = 1
 hp = 450
@@ -88,6 +86,8 @@ flavor_text = {
     ]
 }
 
+
+
 def press_enter():
     print("\n\033[5m<Press enter to continue>\033[0m")
     input()
@@ -109,17 +109,17 @@ def check_achievements():
     
     # Crumby Death - Tracking toaster encounters
     if toaster_encounters >= 5 and not achievements["Crumby Death"]:
-        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Crumby Death{Color.END}")
+        print(f"\n{Color.YELLOW} ACHIEVEMENT UNLOCKED: Crumby Death (Survive 5 Toasters){Color.END}")
         achievements["Crumby Death"] = True
 
     # Bread Winner - If the score is high and you're in the food area
     if score >= 15 and "Pizza" in enemies and not achievements["Bread Winner"]:
-        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Bread Winner{Color.END}")
+        print(f"\n{Color.YELLOW} ACHIEVEMENT UNLOCKED: Bread Winner (Survived the Pantry){Color.END}")
         achievements["Bread Winner"] = True
 
     # Hoarder - Check inventory length
     if len(inventory) >= 5 and not achievements["Hoarder"]:
-        print(f"\n{Color.YELLOW}ACHIEVEMENT UNLOCKED: Hoarder{Color.END}")
+        print(f"\n{Color.YELLOW} ACHIEVEMENT UNLOCKED: Hoarder (Pack Rat status achieved){Color.END}")
         achievements["Hoarder"] = True
 
 class Color:
@@ -169,7 +169,7 @@ elif name.isdigit():
     typewriter("Your name is a number? Are you a robot too?")
     sys.exit()
 
-if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot", "butt", "moron"]:
+if name.lower() in ["poo", "poop", "poopy", "poopypants", "idiot"]:
     print("That is very immature!")
     sys.exit()
 
@@ -209,7 +209,7 @@ press_enter()
 print("Please note that using certain terminals won't work with the blinking text, VS CODE's terminal won't show the blinking text,")
 print("command prompt has a chance of working and not working, if it does work at first then it'll be fine for the rest of the time.")
 typewriter("Thank you to 89Pexel for coding this game (myself). Thank you to Jotham for adding this and advertising this game.")
-typewriter("Thank you for playing this game, I didn't make the enemies as thugs or some of you might get nightmares, just ask and I'll make a new version.")
+typewriter("And thank you to AI for helping me.")
 
 
 # health
@@ -237,14 +237,6 @@ while hp > 0:
         enemy_hp = random.randint(94, 130) + (level * 10)
     if current_enemy == "Marshmallows":
         enemy_hp = random.randint(94, 105) + (level * 10)
-    if current_enemy == "Chair":
-        enemy_hp = random.randint(100, 154) + (level * 20)
-    if current_enemy == "Computer":
-        enemy_hp = random.randint(110, 154) + (level * 25)
-    if current_enemy == "Book":
-        enemy_hp = random.randint(99, 120) + (level * 15)
-    if current_enemy == "Cable":
-        enemy_hp = random.randint(108, 129) + (level * 25)
     
     if current_enemy in flavor_text:
         print(f"{Color.CYAN}*{random.choice(flavor_text[current_enemy])}*{Color.END}")
@@ -253,22 +245,8 @@ while hp > 0:
     
     while enemy_hp > 0 and hp > 0:
         print(f"\n[ {current_enemy}: {enemy_hp} HP ] | [ YOU: {hp} HP | Healers: {healers} ] | Level: {level}")
-
-        start_time = time.time()
-
-
         choice = input(f"Actions: [1] Attack [2] Heal [3] Use Item [4] Inventory: ")
 
-
-        end_time = time.time()
-        time.taken = end_time - start_time
-
-        if time.taken < 0.003:
-            typewriter("Slow down! System detected bot-like speed. -25 health due to incident")
-            hp -= 25
-            continue
-
-       
 
         if choice == "3":
             if not inventory:
@@ -288,8 +266,8 @@ while hp > 0:
                         enemy_hp -= 2
                         inventory.remove("Spring")
                     elif use_what == "Pepperoni":
-                        print("You throw the Pepperoni, it poisons the opponent! -35 enemy health!")
-                        enemy_hp -= 35
+                        print("You throw the Pepperoni, it poisons the opponent! -30 enemy health!")
+                        enemy_hp -= 30 * {level}
                         inventory.remove("Pepperoni")
                     elif use_what == "Dough":
                         print("You gain 3 healers!!!")
@@ -313,13 +291,9 @@ while hp > 0:
                         typewriter("+50 health!!!!")
                         hp += 50
                         inventory.remove("Shard")
-                    elif use_what == "Paper":
-                        typewriter("You gave the opponent a papercut! The enemy loses 50 health!!")
-                        enemy_hp -= 50
                         
                 else:
                     print("You aren't carrying that!")
-                    continue
                
 
         elif choice == "4":
@@ -341,8 +315,6 @@ while hp > 0:
             else: 
                 typewriter("No healers left!")
                 continue
-
-
         if current_enemy == "Toaster":
             if choice == "1":
                 dmg = random.randint(10, 15) + (level * 2)
@@ -459,54 +431,6 @@ while hp > 0:
                 typewriter(f"You eat the marshmallow. {format_damage(dmg)} dmg to it!")
 
 
-        if current_enemy == "Chair":
-            if choice == "1":
-                dmg = random.randint(15, 23) + (level * 2)
-
-                if random.random() < 0.2: 
-                   dmg = dmg * 2
-                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
-
-                enemy_hp -= dmg
-                typewriter(f"You smash the chair! {format_damage(dmg)} dmg to it! -5 health to you.")
-                hp -= 5
-
-
-        if current_enemy == "Computer":
-            if choice == "1":
-                dmg = random.randint(12, 19) + (level * 2)
-
-                if random.random() < 0.2: 
-                   dmg = dmg * 2
-                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
-
-                enemy_hp -= dmg
-                typewriter(f"You smash the computer! {format_damage(dmg)} dmg to it! Glass shards hit you! -7 health to you.")
-                hp -= 7
-
-        if current_enemy == "Book":
-            if choice == "1":
-                dmg = random.randint(12, 13) + (level * 2)
-
-                if random.random() < 0.2: 
-                   dmg = dmg * 2
-                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
-
-                enemy_hp -= dmg
-                typewriter(f"You smash the book! {format_damage(dmg)} dmg to it!")
-
-        if current_enemy == "Cable":
-            if choice == "1":
-                dmg = random.randint(12, 19) + (level * 2)
-
-                if random.random() < 0.2: 
-                   dmg = dmg * 2
-                   typewriter(f"{Color.RED}CRITICAL HIT!{Color.END}")
-
-                enemy_hp -= dmg
-                typewriter(f"You cut the wire! {format_damage(dmg)} dmg to it!")
-
-
 
             
         if random.random() < 0.2:
@@ -528,15 +452,15 @@ while hp > 0:
                 if current_enemy == "Toaster":
                     e_dmg = random.randint(5, 17)
                     hp -= e_dmg
-                    print(f"The {current_enemy} sends toasts in your eyes back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Bed":
                     e_dmg = random.randint(4, 20)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits you back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Sofa":
                     e_dmg = random.randint(4, 15)
                     hp -= e_dmg
-                    print(f"The {current_enemy} goes on you for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Lamp":
                     e_dmg = random.randint(5, 18)
                     hp -= e_dmg
@@ -544,39 +468,23 @@ while hp > 0:
                 if current_enemy == "Car":
                     e_dmg = random.randint(7, 20)
                     hp -= e_dmg
-                    print(f"The {current_enemy} drives on you for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Bread":
                     e_dmg = random.randint(7, 22)
                     hp -= e_dmg
-                    print(f"The {current_enemy} hits you back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Toast":
                     e_dmg = random.randint(5, 17)
                     hp -= e_dmg
-                    print(f"The {current_enemy} burns you back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Pizza":
                     e_dmg = random.randint(7, 15)
                     hp -= e_dmg
-                    print(f"The {current_enemy} burns you back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
                 if current_enemy == "Marshmallows":
                     e_dmg = random.randint(8, 23)
                     hp -= e_dmg
-                    print(f"The {current_enemy} burns you back for {e_dmg}!")
-                if current_enemy == "Chair":
-                    e_dmg = random.randint(5, 27)
-                    hp -= e_dmg
-                    print(f"The {current_enemy} falls on you for {e_dmg}!")
-                if current_enemy == "Computer":
-                    e_dmg = random.randint(10, 32)
-                    hp -= e_dmg
-                    print(f"The {current_enemy} shards you back for {e_dmg}!")
-                if current_enemy == "Book":
-                    e_dmg = random.randint(15, 21)
-                    hp -= e_dmg
-                    print(f"The {current_enemy} gives you a papercut back for {e_dmg}!")
-                if current_enemy == "Cable":
-                    e_dmg = random.randint(19, 37)
-                    hp -= e_dmg
-                    print(f"The {current_enemy} zaps you back for {e_dmg}!")
+                    print(f"The {current_enemy} hits back for {e_dmg}!")
 # win and drops
     
     if hp > 0:
@@ -626,16 +534,6 @@ while hp > 0:
                 inventory.append("Screw")
                 onlyonce = True
         
-        if current_enemy == "Computer":
-            if random.random() < 0.1:
-                print("The computer dropped a 'Shard'!")
-                inventory.append("Shard")
-        
-        if current_enemy == "Book":
-            if random.random() < 0.3:
-                print("The book dropped  'Paper'!")
-                inventory.append("Paper")
-                
 # prompts and levels  
 
 
@@ -712,23 +610,7 @@ while hp > 0:
             press_enter()
 
             print("Area 3!")
-            typewriter("Office")
-            typewriter("Your new skill level is 3")
-            typewriter("+3 healers")
-            typewriter("+500 health")
-
-            level = 3
-            healers +=3 
-            hp += 500
-            enemies = ["Chair", "Computer", "Book", "Cable"]
-
-            press_enter()
-        
-        if score == 45:
-
-            press_enter()
-
-            typewriter("I will update this to have a new area (area 5, bathroom)")
+            typewriter("Will put later just continue on area 2")
 
             press_enter()
 
@@ -760,10 +642,10 @@ while hp > 0:
             print(random.choice(messages))
 # loss      
     else:
-        if score >= 21:
+        if score >= 11:
             print(f"\n--- You lose ---")
             print(f"Final Score: {score} enemies defeated.")
-            print("You have beaten over 20 enemies. Congratulations!")
+            print("You have beaten over 10 enemies. Congratulations!")
             print("Amazing!")
         else:
             print(f"\n--- You lose ---")    
